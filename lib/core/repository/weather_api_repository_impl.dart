@@ -1,6 +1,8 @@
 import 'package:fifthlab_assessment/constants/constants_exports.dart';
 import 'package:fifthlab_assessment/core/api/response/current_weather/current_weather_response.dart';
+import 'package:fifthlab_assessment/core/api/response/forecast_weather/forecast_weather_response.dart';
 import 'package:fifthlab_assessment/core/api/weather_api_manager.dart';
+import 'package:fifthlab_assessment/core/models/forecast_weather_data.dart';
 import 'package:fifthlab_assessment/core/models/weather_data.dart';
 import 'package:fifthlab_assessment/config/failure.dart';
 import 'package:dartz/dartz.dart';
@@ -38,6 +40,45 @@ class WeatherApiRepositoryImpl extends WeatherApiRepository {
   @override
   Future<Either<Failure, WeatherData>> getCurrentWeather() async {
     final Either<Failure, WeatherData> result = await Task(() => _getCurrentWeather())
+        .attempt()
+        .map(
+          (either) => either.leftMap(
+            (obj) {
+              try {
+                return obj as Failure;
+              } catch (err) {
+                throw obj;
+              }
+            },
+          ),
+        )
+        .run();
+
+    return result;
+  }
+
+  Future<ForecastWeatherData> _getForecastWeather() async {
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+
+      ForecastWeatherResponse response = await _weatherApiManager.getForecastWeatherData(
+        position.latitude,
+        position.longitude,
+        dotenv.env[BaseApiConstants.apiKey]!,
+      );
+
+      return ForecastWeatherData.from(response);
+    } catch (err) {
+      if (err is Failure) rethrow;
+      throw Failure.fromException(err as Exception);
+    }
+  }
+
+  @override
+  Future<Either<Failure, ForecastWeatherData>> getForecastWeather() async {
+    final Either<Failure, ForecastWeatherData> result = await Task(() => _getForecastWeather())
         .attempt()
         .map(
           (either) => either.leftMap(

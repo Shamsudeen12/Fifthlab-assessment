@@ -1,6 +1,7 @@
 import 'package:fifthlab_assessment/config/injectable/injectable.dart';
 import 'package:fifthlab_assessment/constants/constants_exports.dart';
 import 'package:fifthlab_assessment/views/screens/home/bloc/home_bloc.dart';
+import 'package:fifthlab_assessment/views/widgets/tabs/forecast_weather_tab.dart';
 import 'package:fifthlab_assessment/views/widgets/widgets_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -89,11 +90,11 @@ class HomeScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                Expanded(
+                                const Expanded(
                                   child: TabBarView(
                                     children: [
-                                      const CurrentWeatherTab(),
-                                      Container(),
+                                      CurrentWeatherTab(),
+                                      ForecastWeatherTab(),
                                     ],
                                   ),
                                 )

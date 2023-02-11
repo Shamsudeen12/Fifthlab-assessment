@@ -4,6 +4,8 @@ class BaseApiConstants {
   static const String apiKey = "API_KEY";
 
   static const String currentWeatherEndpoint = '/weather';
+  static const String forecastWeatherEndpoint = '/forecast';
+
   static const String apiQueryKey = "appid";
   static const String latQueryKey = 'lat';
   static const String lonQueryKey = 'lon';
