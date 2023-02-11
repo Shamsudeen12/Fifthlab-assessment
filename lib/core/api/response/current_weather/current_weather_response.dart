@@ -16,9 +16,12 @@ class CurrentWeatherResponse {
   @JsonKey(name: 'wind')
   final Wind? wind;
 
+  final String name;
+
   final int dt;
 
   CurrentWeatherResponse({
+    required this.name,
     required this.weather,
     this.temperature,
     required this.dt,

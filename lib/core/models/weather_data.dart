@@ -9,6 +9,7 @@ class WeatherData {
   final DateTime date;
   final int? humidity;
   final double? windSpeed;
+  final String name;
 
   const WeatherData({
     required this.weatherConditionCode,
@@ -19,6 +20,7 @@ class WeatherData {
     required this.date,
     required this.humidity,
     required this.windSpeed,
+    required this.name,
   });
 
   factory WeatherData.fromWeatherResponse(CurrentWeatherResponse response) {
@@ -31,6 +33,7 @@ class WeatherData {
       date: DateTime.fromMillisecondsSinceEpoch(response.dt * 1000),
       humidity: response.temperature?.humidity,
       windSpeed: response.wind?.speed,
+      name: response.name,
     );
   }
 }

@@ -5,11 +5,9 @@ import 'package:intl/intl.dart';
 class LocationDateWidget extends StatelessWidget {
   const LocationDateWidget({
     super.key,
-    required this.country,
     required this.state,
     required this.date,
   });
-  final String country;
   final String state;
   final DateTime date;
 
@@ -21,7 +19,7 @@ class LocationDateWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          '$state,\n$country',
+          state,
           style: TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 32.0,

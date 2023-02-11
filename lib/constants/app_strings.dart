@@ -9,4 +9,9 @@ class AppStrings {
 
   static const String currentTabTitle = 'Current';
   static const String sevenDaysTabTitle = 'Next 7 days';
+
+  static const String noLocationAccessErrMsg =
+      'Weather forecast needs location access to tell the weather';
+
+  static const String implRepo = 'impl';
 }

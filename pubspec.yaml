@@ -50,6 +50,10 @@ dependencies:
   json_annotation: ^4.8.0
   flutter_svg: ^2.0.0+1
   intl: ^0.18.0
+  rive: ^0.10.1
+  dartz: ^0.10.1
+  geolocator: ^9.0.2
+  permission_handler: ^10.2.0
 
 dev_dependencies:
   flutter_test:

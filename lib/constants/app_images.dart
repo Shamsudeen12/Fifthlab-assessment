@@ -25,4 +25,8 @@ class AppImages {
 
   static const String windIcon = 'assets/images/wind_icon.png';
   static const String humidityIcon = 'assets/images/humidity_icon.png';
+
+  static const String errorAnim = 'assets/images/error.riv';
+
+  static const String loadingAnim = 'assets/images/loading.riv';
 }
